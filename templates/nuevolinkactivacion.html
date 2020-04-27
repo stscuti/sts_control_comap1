@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+          <div class="container" id="content" tabindex="-1" style="background-color: #005A9B; color: #fff;">
+            <div class="row justify-content-center">
+            <img id="logo_DATABITICS_COMAP" src='{% static "img/sepi.jpg" %}' alt="Sistema de Exoneraciones de Proyectos de Inversión." style="height:100px; width:100px;" />
+                <form method="POST" action="" name="Form_Html_Nuevo_Link_Activacion" style="width:80%;margin:0 auto" id="Form_Html_Nuevo_Link_Activacion" target="_self">
+                  <label id="" class=""><h1>Solicitar Nuevo Link de Activacion de Cuenta</h1></label>
+                  <label id="" class=""><h3>Le enviaremos un correo con un nuevo link de activacion en caso de que la cuenta exista y no se encuentre activada al mail declarado en el registro de solicitud</h3></label>
+                  <label id="" class=""><h6>{{ Mensaje_Error }}</h6></label>
+                    {% csrf_token %}
+                    <!-- {{ form }} -->
+                    {{ form }}
+                    
+                    <div class="form-group form-inline justify-content-between">
+                      <div>
+                          <input id="Activar Cuenta" type="submit" value="Solicitar Nuevo Link de Activacion de Cuenta" class="btn btn-primary" update="" form="Form_Html_Nuevo_Link_Activacion" formmethod="POST" formaction='{% url "Usuarios:nuevo_link_activacion" user_id %}'/>
+                      </div>
+                    </div>  
+                </form>
+            </div>    
+          </div>
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}
+

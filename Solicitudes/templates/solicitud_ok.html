@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head %}
+        
+{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+          <!-- <div class="container mb-10" id="acordion_cargar_cotizaciones" style="width: 100%; margin:">  tabindex="-1" 
+            <div class="row mb-10"> -->
+              <div class="accordion" id="accordionCotizacionesAuto">
+                  <div class="card border-left-primary shadow">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="">
+                        <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseCotizaAuto" aria-expanded="true" aria-controls="collapseOne">
+                          Solicitudes
+                        </button>
+                      </h2>
+                    </div>
+
+                     <div id="collapseCotizaAuto" class="collapse" aria-labelledby="headingOne" data-parent="#accordionCotizacionesAuto">
+                      <div class="card-body">
+                        
+                       <div>Solicitud Ok </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>    
+            <!--</div>  
+          </div>  -->
+         
+                       
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}

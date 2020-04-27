@@ -1,0 +1,117 @@
+from lxml import etree
+import zeep, Settings
+from datetime import datetime
+
+
+wsdl = "https://cotizaciones.bcu.gub.uy/wscotizaciones/servlet/awsbcucotizaciones?wsdl"
+settings = Settings(strict=False, xml_huge_tree=True)
+client2 = zeep.Client(wsdl=wsdl, settings=settings)
+data11 = {		'Entrada' :	{	'Moneda': {'item' : [2225,9900]},
+									'FechaDesde': date(2019,7,15).isoformat(),
+									'FechaHasta': date(2019,7,15).isoformat(),
+									'Grupo': '0',}}
+respuesta_ws_cotiza = client2.service.Execute(**data11)
+print(etree.tostring(node, pretty_print=True))
+
+
+
+
+##################### Prueba Suds
+
+>>> from suds.client import Client
+>>> client = Client("https://cotizaciones.bcu.gub.uy/wscotizaciones/servlet/awsbcucotizaciones?wsdl")
+>>> cotiza_obj = client.factory.create("wsbcucotizacionesin")
+>>> from datetime import datetime
+>>> cotiza_obj.FechaDesde = datetime(2019,7,1)
+>>> cotiza_obj.FechaHasta = datetime(2019,7,15)
+>>> cotiza_obj.Grupo  = 2
+>>> cotiza_obj.Moneda = {'item' : [2225,9800,9900]}
+>>> ret = client.service.Execute(cotiza_obj)
+>>> ret
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data = { 'wsbcucotizacionesin' : {
+						'FechaDesde': "2019/7/1", #datetime(2019,7,1),
+						'FechaHasta': "2019/7/15", #datetime(2019,7,15),
+						'Grupo': '0',
+						'Moneda': {'item': '0'},
+						#'Moneda': {'item' : (2225,9800,9900)},
+					}}
+respuesta_ws_cotiza = client.service.Execute(**data)
+
+data2 = { 'Entrada' :	{'wsbcucotizacionesin' : {
+						'FechaDesde': "2019/7/1", #datetime(2019,7,1),
+						'FechaHasta': "2019/7/15", #datetime(2019,7,15),
+						'Grupo': '0',
+						'Moneda': {'item' : (2225,9800,9900)},
+					}}}
+					
+data3 = { 'Entrada' :	{
+						'FechaDesde': "2019/7/1", #datetime(2019,7,1),
+						'FechaHasta': "2019/7/15", #datetime(2019,7,15),
+						'Grupo': '0',
+						'Moneda': {'item' : (2225,9800,9900)},
+					}}
+					
+data4 = { 'Entrada' :	{
+						'FechaDesde': datetime(2019,7,1).isoformat(),
+						'FechaHasta': datetime(2019,7,15).isoformat(),
+						'Grupo': '0',
+						'Moneda': {'item' : (2225,9800,9900)},
+					}}
+data5 = { 'Entrada' :	{
+						'FechaDesde': isodate.parse_date("2019-07-01").isoformat(),
+						'FechaHasta': isodate.parse_date("2019-07-01").isoformat(),
+						'Grupo': '0',
+						'Moneda': {'item' : (2225,9800,9900)},
+					}}
+
+data6 = { 'Entrada' :	{
+						'FechaDesde': date(2019,7,1).isoformat,
+						'FechaHasta': date(2019,7,15).isoformat,
+						'Grupo': '0',
+						'Moneda': {'item' : (2225,9800,9900)},
+					}}
+data7 = { 'Entrada' :	{'FechaDesde': date(2019,7,1).isoformat(),'FechaHasta': date(2019,7,15).isoformat(),'Grupo': '0',
+						'Moneda': {'item' : (2225,9800,9900)},
+					}}
+data8 = { 'Entrada' :	{'Grupo': '0',
+						'Moneda': {'item' : (2225,9800,9900)},
+					}}		
+
+wsbcucotizacionesin = { 
+						'FechaDesde': "2019/7/1", #datetime(2019,7,1),
+						'FechaHasta': "2019/7/15", #datetime(2019,7,15),
+						'Grupo': '0',
+						'Moneda': {'item' : (2225,9800,9900)},
+					}	
+
+data9 = {		'Entrada' :	{	'Moneda': {'item' : 2225},
+									'FechaDesde': '2019-07-01T00:00:00',
+									'FechaHasta': '2019-07-15T00:00:00',
+									'Grupo': '0',}}		
+
+data10 = {		'Entrada' :	{	'Moneda': {'item' : [2225,9900]},
+									'FechaDesde': '2019-07-01T00:00:00',
+									'FechaHasta': '2019-07-15T00:00:00',
+									'Grupo': '0',}}										
+data11 = {		'Entrada' :	{	'Moneda': {'item' : [2225,9900]},
+									'FechaDesde': date(2019,7,15).isoformat(),
+									'FechaHasta': date(2019,7,15).isoformat(),
+									'Grupo': '0',}}	

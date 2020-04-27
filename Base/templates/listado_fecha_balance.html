@@ -1,0 +1,171 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head %}
+        
+{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+
+              <div class="accordion" id="accordionFechaBalance">
+                  <div class="card border-left-primary shadow">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="">
+                        <button class="btn btn-primary btn-collapse" type="button" data-toggle="collapse" data-target="#collapseFechaBalance" aria-expanded="false" aria-controls="collapseOne">
+                          Fecha de Balance
+                        </button>
+                      </h2>
+                    </div>
+
+                     <div id="collapseFechaBalance" class="" aria-labelledby="headingOne" data-parent="#accordionFechaBalance"> <!-- class="collapse"-->
+                      <div class="card-body">
+                        
+                        <div class="row text-right">
+                                <div class="col-lg-12">
+
+                                </div>                                
+                        </div>
+                        <div class="row text-right">
+                                <div class="col-lg-12">
+                                        <a onclick="return abrir_modal_crud_pais('{% url 'Base:Crear_Fecha_Balance' %}','Fecha de Balance / Nuevo')" class="btn btn-primary btn-sm my-2 my-sm-2">
+                                          Crear Fecha de Balance
+                                        </a>                                
+                                </div>                                
+                        </div>                                                
+                        <hr/>
+                        <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="boostrap-table">
+                                    <div class="buttons-toolbar-ministerios">
+                                    </div>
+                                    <table id="tabla-paises" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-toggle="true" data-show-fullscreen="true" data-toolbar=".buttons-toolbar-ministerios" data-locale="es-AR">
+                                               <thead>
+                                                        <tr>
+                                                            <th class="text-center">ID</th>
+                                                            <th class="text-center">Fecha de Balance</th>
+                                                            <th class="text-center">Estado</th>
+                                                            <th class="text-center">Fecha de Creacion</th>
+                                                            <th class="text-center">Fecha de Modificacion</th>
+                                                            <th class="text-center">Creado por:</th>
+                                                            <th class="text-center">Modificado por:</th>
+                                                            <th class="text-center">ACCIONES</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for fbalance in fecha_balance %}
+                                                  <tr>
+                                                      <td>{{ fbalance.pk }}</td>
+                                                      <td>{{ fbalance.fecha_balance }}</td>
+                                                      <td>{{ fbalance.estado|yesno:"Activo,Inactivo" }}</td>
+                                                      <td>{{ fbalance.fc|date:"d/m/Y H:i:s" }}</td>
+                                                      <td>{{ fbalance.fm|date:"d/m/Y H:i:s" }}</td>
+                                                      <td>{{ fbalance.uc }}</td>
+                                                      <td>{{ fbalance.um }}</td>
+                                                      <td class="text-center">
+                                                          <!-- -->
+                                                          <a onclick="return abrir_modal_crud_pais('{% url 'Base:Detalle_Fecha_Balance' fbalance.pk %}','Fecha de Balance / {{ fbalance.pk }}')" class="btn">
+                                                              <span class="fas fa-eye"></span>
+                                                          </a>
+                                                          
+                                                          
+                                                          <a onclick="return abrir_modal_crud_pais('{% url 'Base:Actualizar_Fecha_Balance' fbalance.pk %}','Fecha de Balance / {{ fbalance.pk }}')" class="btn">
+                                                              <span class="fa fa-edit"></span>
+                                                          </a>
+                                                          <a onclick="return abrir_modal_crud_pais('{% url 'Base:Eliminar_Fecha_Balance' fbalance.pk %}','Fecha de Balance / {{ fbalance.pk }}')" class="btn">
+                                                              <span class="fa fa-trash"></span>
+                                                          </a>
+                                                          
+                                                      </td>
+                                                  </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                        </table>
+                                  </div>      
+                                </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              </br>    
+
+
+              
+         
+                       
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}
+
+      {% block modales %}
+        <!--
+        <div class="modal fade" id="ventana_modal_actualizar_pais" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    
+        </div>
+        -->
+
+        <div class="modal fade" id="ventana_modal_crud_pais" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    
+        </div>
+
+        
+      
+      {% endblock modales %}
+
+      {% block jscript %}
+      
+      <script src='{% static "js/jquery.formset.js" %}'></script>
+      </script>
+      <script type="text/javascript">
+          $('.formset_row-{{ formset.prefix }}').formset({
+              addText: 'add another',
+              deleteText: 'remove',
+              prefix: '{{ formset.prefix }}',
+          });
+      </script>
+      <script>
+      $(document).ready(function()
+      {
+          var table = $('#tabla').dataTable( {
+              "language": {
+                      url: "/static/localizacion/es_ES.json"
+              }
+          } );
+      });
+      </script>
+
+      <!--
+      <script>
+        var modal_actualizar;
+
+        function abrir_modal_actualizar_pais(url, titulo)
+        {
+            modal_actualizar = $('#ventana_modal_actualizar_pais').dialog(
+            {
+                title: titulo,
+                modal: true,
+                width: 500,
+                resizable: false
+            }).dialog('open').load(url)
+        }
+
+        function cerrar_modal_actualizar_pais()
+        {
+            modal_actualizar.dialog("close");
+        }
+        </script>
+        -->
+
+      
+      {% endblock jscript %}

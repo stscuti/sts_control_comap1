@@ -1,0 +1,33 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+
+{% block modales %}          
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ventana_modal_crud_pais">
+                  Actualizar Categoria de Inversiones / {{ object.categoria }}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <fieldset class="border p-2">
+                <legend class="w-auto">Categoria de Inversiones</legend>
+                <form id="Formulario_Actualizar_Categoria_Inversiones_HTML" role="form" action="{% url 'Base:Actualizar_Categoria_Inversion_Individual' categoria_inversiones.id %}" method="post">
+                  {% csrf_token %}
+                  {{ form.as_p }} 
+                </form>
+                </fieldset>  
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal" onclick="return cerrar_modal_crud_pais()">Cancelar</button>
+                
+                <input form="Formulario_Actualizar_Categoria_Inversiones_HTML" type="submit" class="btn btn-warning" name="submit" value="Actualizar">
+              </div>
+            </div>
+          </div>        
+{% endblock modales %}

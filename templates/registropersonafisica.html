@@ -1,0 +1,131 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+          <div class="container" id="content" tabindex="-1" style="background-color: #005A9B; color: #fff;">
+            <div class="row justify-content-center">
+            <img id="logo_DATABITICS_COMAP" src='{% static "img/sepi.jpg" %}' alt="Sistema de Exoneraciones de Proyectos de Inversión." style="height:100px; width:100px;"/>
+                <form method="POST" action='{% url "Usuarios:Registro_PersonaFisica" %}' name="Form_Html_RegistroPersonaFisica" enctype=multipart/form-data style="width:80%;margin:0 auto" id="Form_Html_RegistroPersonaFisica">
+                  <label id="" class=""><h1>Registrar Persona Física</h1></label>
+                    {% csrf_token %}
+                    <!-- {{ form.as_p }}     -->
+                    {{ form.non_field_errors }}
+                    <div class="form-group"><label id="labelIdentificador" for="__id_UsuarioMain-identificador">Identificador</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                            <input id="id_UsuarioMain-identificador" type="text" name="UsuarioMain-identificador" maxlength="12" class="form-control" required autofocus/>
+                        </div>
+                        <span class="helptext">{{form.UsuarioMain_identificador.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain_identificador.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-password1">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                            <input id="id_UsuarioMain-password1" type="password" name="UsuarioMain-password1" class="form-control" required/>
+                        </div>
+                        <span class="helptext">{{form.UsuarioMain_password1.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain_password1.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-password2">Confirme Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                            <input id="id_UsuarioMain-password2" type="password" name="UsuarioMain-password2" class="form-control" required/>
+                        </div>
+                        <span class="helptext">{{form.UsuarioMain_password2.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain_password2.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-correo">Correo Electronico</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_UsuarioMain-correo" type="email" maxlength="100" name="UsuarioMain-correo" class="form-control" required/>
+                        </div>
+                        <span class="helptext">{{form.UsuarioMain_correo.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain_correo.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-tipo_usuario">Tipo de Usuario</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_UsuarioMain-tipo_usuario" type="text" name="UsuarioMain-tipo_usuario" class="form-control" readonly value="Consultor"/>
+                        </div>
+                        <span class="helptext">{{form.UsuarioMain_tipo_usuario.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain_tipo_usuario.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-direccion">Dirección</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_UsuarioMain-direccion" type="text" maxlength="100" name="UsuarioMain-direccion" class="form-control" />
+                        </div>
+                        <span class="helptext">{{form.UsuarioMain_direccion.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain_direccion.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-telefono">Telefono</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_UsuarioMain-telefono" type="text" maxlength="50" name="UsuarioMain-telefono" class="form-control" />
+                        </div>
+                        <span class="helptext">{{form.UsuarioMain_telefono.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain_telefono.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-celular">Celular</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_UsuarioMain-celular" type="text" maxlength="50" name="UsuarioMain-celular" class="form-control" required/>
+                        </div>
+                        <span class="helptext">{{form.UsuarioMain_celular.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain_celular.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_PersonaFisica-nombre1">Primer Nombre</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_PersonaFisica-nombre1" type="text" name="PersonaFisica-nombre1" class="form-control" maxlength="50" required/>
+                        </div>
+                        <span class="helptext">{{form.PersonaFisica_nombre1.help_text}}</span>
+                        <span class="helptext">{{form.PersonaFisica_nombre1.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_PersonaFisica-nombre2">Segundo Nombre</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_PersonaFisica-nombre2" type="text" maxlength="50" required name="PersonaFisica-nombre2" class="form-control" />
+                        </div>
+                        <span class="helptext">{{form.PersonaFisica_nombre2.help_text}}</span>
+                        <span class="helptext">{{form.PersonaFisica_nombre2.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_PersonaFisica-apellido1">Primer Apellido</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_PersonaFisica-apellido1" type="text" maxlength="50" required name="PersonaFisica-apellido1" class="form-control"/>
+                        </div>
+                        <span class="helptext">{{form.PersonaFisica_apellido1.help_text}}</span>
+                        <span class="helptext">{{form.PersonaFisica_apellido1.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_PersonaFisica-apellido2">Segundo Apellido</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_PersonaFisica-apellido2" type="text" maxlength="50" required name="PersonaFisica-apellido2" class="form-control"/>
+                        </div>
+                        <span class="helptext">{{form.PersonaFisica_apellido2.help_text}}</span>
+                        <span class="helptext">{{form.PersonaFisica_apellido2.errors}}</span>
+                    </div>
+                    <div class="form-group form-inline justify-content-between">
+                      <div>
+                          <input id="GuardarPersonaFisica" type="submit" value="Guardar Persona Fisica" class="btn btn-primary" update="" form="Form_Html_RegistroPersonaFisica" formmethod="POST" formaction='{% url "Usuarios:Registro_PersonaFisica" %}'/>
+                      </div>
+                    </div>          
+                </form>
+            </div>    
+          </div>
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}

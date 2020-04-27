@@ -1,0 +1,200 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head %}
+        
+{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+          <!-- <div class="container mb-10" id="acordion_cargar_cotizaciones" style="width: 100%; margin:">  tabindex="-1" 
+            <div class="row mb-10"> -->
+              {% if not listadosolicitudes %}
+              <div class="accordion" id="accordionSolicitudes">
+                  <div class="card border-left-primary shadow">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="">
+                        <a href='{% url "Solicitudes:Solicitudes" %}' class="btn btn-primary btn-collapse" type="button" data-toggle="collapse" data-target="#collapseSolicitudes" aria-expanded="false" aria-controls="collapseOne">
+                          Solicitudes
+                        </a>
+                        <a href='{% url "Solicitudes:ListadoSolicitudes" %}' class="btn btn-primary" >
+                          Listado Solicitudes
+                        </a>
+                      </h2>
+                    </div>
+
+                     <div id="collapseSolicitudes" class="" aria-labelledby="headingOne" data-parent="#accordionSolicitudes">
+                      <div class="card-body">
+                        
+                        <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+                        <form action="" method="post">
+                          {% csrf_token %}
+                          <table>
+                          {{ wizard.management_form }}
+                          {% if wizard.form.forms %}
+                            {{ wizard.form.management_form }}
+                            {% for form in wizard.form.forms %}
+                              {{ form }}
+                            {% endfor %}
+                          {% else %}
+                            {{ wizard.form }}
+                          {% endif %}
+                          </table>
+                          {% if wizard.steps.prev %}
+                          <button class="btn btn-primary" name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
+                          <button class="btn btn-primary" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
+                          {% endif %}
+                          <input class="btn btn-primary" type="submit" value="{% trans 'submit' %}"/>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+              </div>    
+            <!--</div>  
+          </div>  -->
+          {% endif %}
+          {% if listadosolicitudes %}
+          <div class="accordion" id="accordionListadoSolicitudes">
+                  <div class="card border-left-primary shadow">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="">
+                        <button class="btn btn-primary btn-collapse" type="button" data-toggle="collapse" data-target="#collapseListadoSolicitudes" aria-expanded="false" aria-controls="collapseOne">
+                          Listado Solicitudes
+                        </button>
+                      </h2>
+                    </div>
+
+                     <div id="collapseListadoSolicitudes" class="" aria-labelledby="headingOne" data-parent="#accordionListadoSolicitudes"> <!-- class="collapse"-->
+                      <div class="card-body">
+                        
+                        <div class="row text-right">
+                                <div class="col-lg-12">
+
+                                </div>                                
+                        </div>
+                        <div class="row text-right">
+                                <div class="col-lg-12">
+                                        <a href='{% url "Solicitudes:Solicitudes" %}' class="btn btn-primary btn-sm my-2 my-sm-2">
+                                          Crear Solicitud
+                                        </a>                                
+                                </div>                                
+                        </div>                                                
+                        <hr/>
+                        <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="boostrap-table">
+                                    <div class="buttons-toolbar-listado-solicitudes">
+                                    </div>
+                                    <table id="tabla-listado-solicitudes" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-toggle="true" data-show-fullscreen="true" data-toolbar=".buttons-toolbar-listado-solicitudes" data-locale="es-AR">
+                                               <thead>
+                                                        <tr>
+                                                            <th class="text-center">Contribuyente</th>
+                                                            <th class="text-center">Número de Expediente</th>
+                                                            <th class="text-center">Estado de Solicitud</th>
+                                                            <th class="text-center">Asignado a</th>
+                                                            <th class="text-center">Observacion</th>
+                                                            <th class="text-center">Tipo Giro</th>
+                                                            <th class="text-center">Fecha de Balance</th>
+                                                            <th class="text-center">Tipo Contribuyente</th>
+                                                            <th class="text-center">Actividad Agropecuaria</th>
+                                                            <th class="text-center">Proyectos Previos</th>
+                                                            <th class="text-center">Es Empresa Nueva</th>
+                                                            <th class="text-center">Sin Facturacion últimos 3 ejercicios</th>
+                                                            <th class="text-center">Empresas Vinculadas</th>
+                                                            <th class="text-center">Empresas Vinculadas sin facturación últimos 3 ejercicios</th>
+                                                            <th class="text-center">Es PYME</th>
+                                                            <th class="text-center">Cantidad de Empleados</th>
+                                                            <th class="text-center">Ventas Netas en UI</th>
+                                                            <th class="text-center">Ventas Netas en Pesos</th>
+                                                            <th class="text-center">Empresa Controlada</th>
+                                                            <th class="text-center">Controlada supera MYPE</th>
+                                                            <th class="text-center">Pertenece a Grupo Economico</th>
+                                                            <th class="text-center">Grupo Economico supera MYPE</th>
+                                                            <th class="text-center">Proyeccion Empleados</th>
+                                                            <th class="text-center">Proyeccion Ventas Netas UI</th>
+                                                            <th class="text-center">Credito Fiscal por Aportes Patronales</th>
+                                                            <th class="text-center">Usuario Parque Industrial</th>
+                                                            <th class="text-center">Objetivo del Proyecto</th>
+                                                            <th class="text-center">Información Ampliada</th>
+                                                            <th class="text-center">Extensión Plazo</th>
+                                                            <th class="text-center">Años de Ejecucion de Inversión</th>
+                                                            <th class="text-center">Estado</th>
+                                                            <th class="text-center">Fecha Creación</th>
+                                                            <th class="text-center">Fecha Modificación</th>
+                                                            <th class="text-center">Usuario Creación</th>
+                                                            <th class="text-center">Usuario Modificación</th>
+                                                            <th class="text-center">Acciones</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for solicitud in listadosolicitudes %}
+                                                  <tr>
+                                                      <td>{{ solicitud.contribuyente }}</td>
+                                                      <td>{{ solicitud.num_expediente }}</td>
+                                                      <td>{{ solicitud.estado_solicitud }}</td>
+                                                      <td>{{ solicitud.asignado_solicitud }}</td>
+                                                      <td>{{ solicitud.observacion_solicitud }}</td>
+                                                      <td>{{ solicitud.tipo_giro_datoseconomicos }}</td>                                                 
+                                                      <td>{{ solicitud.fecha_balance_datoseconomicos }}</td>
+                                                      <td>{{ solicitud.tipo_contribuyente_datoseconomicos }}</td>
+                                                      <td>{{ solicitud.actividad_agropecuaria_datoseconomicos|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.proyectos_previos_datoseconomicos|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.empresa_nueva_empresanueva|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.sin_facturacion_ult3ej_empresanueva|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.empresa_vinculada_empresanueva|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.empresa_vinculada_sin_factult3ej_empresanueva|yesno:"Si,No" }}</td>                                               
+                                                      <td>{{ solicitud.pyme_mype|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.cantidad_empleados_mype }}</td>
+                                                      <td>{{ solicitud.ventas_netas_UI_mype }}</td>
+                                                      <td>{{ solicitud.ventas_netas_pesos_mype }}</td>
+                                                      <td>{{ solicitud.controlada_mype|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.controlada_superamyoe_mype|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.grupo_economico_mype|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.grupo_economico_supera_mype|yesno:"Si,No" }}</td>                                                 
+                                                      <td>{{ solicitud.proyeccion_cantidad_empleados_mype }}</td>
+                                                      <td>{{ solicitud.proyeccion_ventas_netas_UI_mype }}</td>
+                                                      <td>{{ solicitud.credito_fiscal_aportes_patronales_mype|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.usuario_parque_industrial_mype|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.objetivo_proyecto }}</td>
+                                                      <td>{{ solicitud.informacion_ampliada_proyecto }}</td>
+                                                      <td>{{ solicitud.extension_plazo_proyecto|yesno:"Si,No" }}</td>
+                                                      <td>{{ solicitud.anos_ejecucion_inversion_proyecto }}</td>                                                 
+                                                      <td>{{ solicitud.estado|yesno:"Activo,Inactivo" }}</td>
+                                                      <td>{{ solicitud.fc|date:"d/m/Y H:i:s" }}</td>
+                                                      <td>{{ solicitud.fm|date:"d/m/Y H:i:s" }}</td>
+                                                      <td>{{ solicitud.uc }}</td>
+                                                      <td>{{ solicitud.um }}</td>
+                                                      <td class="text-center">
+                                                          <!-- -->
+                                                          <a href="{% url 'Solicitudes:Edit_Solicitudes' solicitud.num_expediente %}" class="btn">
+                                                              <span class="fa fa-folder"></span>
+                                                          </a>
+                                                          
+                                                      </td>
+                                                  </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                        </table>
+                                  </div>      
+                                </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              </br>
+         {% endif %}
+                       
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}

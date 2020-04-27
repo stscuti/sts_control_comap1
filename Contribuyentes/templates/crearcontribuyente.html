@@ -1,0 +1,92 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+        <script>           
+        </script>
+
+{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+
+        <div class="accordion" id="accordionCrearContribuyente">
+                <div class="card border-left-primary shadow">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="">
+                        <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseCrearContribuyente" aria-expanded="true" aria-controls="collapseOne">
+                          Crear Contribuyente
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseCrearContribuyente" class="collapse" aria-labelledby="headingOne" data-parent="#accordionCrearContribuyente">
+                      <div class="card-body">
+                          <div class="container" id="content" tabindex="-1" style="background-color: #005A9B; color: #fff;">
+                            <div class="row justify-content-center">
+                            <img id="logo_DATABITICS_COMAP" src='{% static "img/sepi.jpg" %}' alt="Sistema de Exoneraciones de Proyectos de Inversión." style="height:100px; width:100px;"/>
+                                <form method="POST" action='{% url "Contribuyentes:Crear_Contribuyente" %}' name="Form_Crear_Contribuyente_Html" enctype=multipart/form-data style="width:80%;margin:0 auto" id="Form_Crear_Contribuyente_Html">
+                                  <fieldset class="border p-2">
+                                  <legend class="w-auto">Crear Contribuyente</legend>
+                                    <!--
+                                    {% csrf_token %}
+                                     {{ form.as_p }}
+                                     {{ form.non_field_errors }}
+                                     --> 
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto">Contribuyente Principal</legend>    
+                                            {% csrf_token %}
+                                            {% crispy form.ContribuyenteMain %}                                                        
+                                    </fieldset>
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto">Domicilio Fiscal</legend>    
+                                            {% csrf_token %}
+                                            {% crispy form.DomicilioFiscalMain %}                                                        
+                                    </fieldset>
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto">Domicilio Constituido</legend>    
+                                            {% csrf_token %}
+                                            {% crispy form.DomicilioConstituidoMain %}           
+                                    </fieldset>
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto">Propietarios</legend>    
+                                            {% csrf_token %}
+                                            {% crispy form.PropietariosMain %}            
+                                    </fieldset>   
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto">Representantes</legend>    
+                                            {% csrf_token %}
+                                            {% crispy form.RepresentantesMain %}            
+                                    </fieldset>
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto">Directores</legend>        
+                                            {% csrf_token %}
+                                            {% crispy form.DirectoresMain %} 
+                                    </fieldset> 
+                                    
+                                    <div class="form-group form-inline justify-content-between">
+                                      <div>
+                                          <input id="CrearContribuyente" type="submit" value="Crear Contribuyente" class="btn btn-primary" update="" form="Form_Crear_Contribuyente_Html" formmethod="POST" formaction='{% url "Contribuyentes:Crear_Contribuyente" %}'/>
+                                      </div>
+                                    </div>
+                                  </fieldset>            
+                                </form>
+                            </div>    
+                          </div>
+                      </div>
+                    </div>  
+                </div>
+            </div>        
+</br>
+                       
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}

@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block head %}{% endblock head %}
+
+{% block body %}  
+
+  {% block navbar %}
+    {% block navbar_left %}{% endblock navbar_left %}
+    {% block navbar_center %}{% endblock navbar_center %}
+    {% block navbar_right %}{% endblock navbar_right %}
+  {% endblock navbar %}
+
+  {% block page_wrapper %}
+
+    {% block side_bar %}
+      {% block side_bar_content %}
+        {% block side_bar_brand %}{% endblock side_bar_brand %}
+        {% block side_bar_header %}
+          {% block side_bar_header_imageuser %}{% endblock side_bar_header_imageuser %}
+          {% block side_bar_header_infouser %}{% endblock side_bar_header_infouser %}
+        {% endblock side_bar_header %}
+        {% block side_bar_search %}{% endblock side_bar_search %}
+        {% block side_bar_menu %}
+          {% block side_bar_menu_header_1 %}{% endblock side_bar_menu_header_1 %}
+            {% block side_bar_menu_itemdrop_1 %}{% endblock side_bar_menu_itemdrop_1 %}
+          {% block side_bar_menu_header_2 %}{% endblock side_bar_menu_header_2 %}
+            {% block side_bar_menu_itemdrop_2 %}{% endblock side_bar_menu_itemdrop_2 %}
+        {% endblock side_bar_menu %}
+      {% endblock side_bar_content %}
+      {% block side_bar_footer %}{% endblock side_bar_footer %}
+    {% endblock side_bar %}
+
+    {% block page_content %}
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}{% endblock jumbotron_title %}
+          {% block jumbotron_content %}{% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}
+
+    {% block footer_general %}
+    {% endblock footer_general %}
+
+    {% endblock page_content %}
+
+  {% endblock page_wrapper %}
+  {% block jscript %}{% endblock jscript %}       
+{% endblock body %}

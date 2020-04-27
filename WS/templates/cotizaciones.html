@@ -1,0 +1,233 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+        <script>           
+            function fechadesde(fdesde) {
+                var fechainicial = new Date(2000,1,1);
+                if((fdesde <= fechainicial) {
+                    alert("La Fecha desde no puede ser anterior al año 2000")
+                }
+
+        </script>
+{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+          <!-- <div class="container mb-10" id="acordion_cargar_cotizaciones" style="width: 100%; margin:">  tabindex="-1" 
+            <div class="row mb-10"> -->
+              <div class="accordion" id="accordionCotizacionesAuto">
+                  <div class="card border-left-primary shadow">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="">
+                        <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseCotizaAuto" aria-expanded="true" aria-controls="collapseOne">
+                          Cargar Cotizaciones Automaticamente desde BCU
+                        </button>
+                      </h2>
+                    </div>
+
+                     <div id="collapseCotizaAuto" class="collapse" aria-labelledby="headingOne" data-parent="#accordionCotizacionesAuto">
+                      <div class="card-body">
+                        
+                        <form method="GET" action='{% url "WS:Escoger_Cotizaciones_Automaticas" %}' name="Form_Html_Cargar_Cotizaciones_Automaticas" enctype=multipart/form-data style="width: 50%; margin:" id="Form_Html_Cargar_Cotizaciones_Automaticas">
+                          <fieldset class="border p-2">
+                          <legend class="w-auto">Cargar Cotizaciones Automaticamente</legend>
+                            {% csrf_token %}
+                            <div class="form-group"><label id="labelfecha_inicio" for="id_fdesde">Fecha Inicio</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                    <input id="id_fdesde" type="date" name="fdesde" class="form-control" value="" onchange="fechadesde(document.getElementsByById('id_fdesde'))" required/>
+                                </div>
+                            </div>
+                            <div class="form-group"><label id="labelfecha_final" for="id_fhasta">Fecha Hasta</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                    <input id="id_fhasta" type="date" name="fhasta" class="form-control" value = "{{ factual }}" required />  
+                                </div>
+                            </div>
+                            <div class="form-group form-inline justify-content-between">
+                              <div>
+                                  <input id="GuardarCotizacionesAutomaticas" type="submit" value="Guardar Cotizaciones Automaticas" class="btn btn-secondary" update="" form="Form_Html_Cargar_Cotizaciones_Automaticas" formmethod="GET" onclick="fechadesde(document.getElementsByById('id_fdesde'))" formaction='{% url "WS:Escoger_Cotizaciones_Automaticas" %}' />
+                              </div>
+                            </div>  
+                            </fieldset>        
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+              </div>    
+            <!--</div>  
+          </div>  -->
+        </br>
+        <p> {{ e }} </p>
+        <div class="accordion" id="accordionCotizaManual">
+                <div class="card border-left-primary shadow">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="">
+                        <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseCotizaManual" aria-expanded="true" aria-controls="collapseOne">
+                          Cargar Cotizaciones Manualmente
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseCotizaManual" class="collapse" aria-labelledby="headingOne" data-parent="#accordionCotizaManual">
+                      <div class="card-body">
+                          <div class="container" id="content" tabindex="-1" style="background-color: #005A9B; color: #fff;">
+                            <div class="row justify-content-center">
+                            <img id="logo_DATABITICS_COMAP" src='{% static "img/sepi.jpg" %}' alt="Sistema de Exoneraciones de Proyectos de Inversión." style="height:100px; width:100px;"/>
+                                <form method="POST" action='{% url "WS:Cotizaciones" %}' name="Form_Html_Cargar_Cotizaciones" enctype=multipart/form-data style="width:80%;margin:0 auto" id="Form_Html_Cargar_Cotizaciones">
+                                  <fieldset class="border p-2">
+                                  <legend class="w-auto">Cargar Cotizaciones Manualmente</legend>
+                                    {% csrf_token %}
+                                    <!-- {{ form.as_p }}   -->
+                                    {{ form.non_field_errors }}
+                                    <div class="form-group"><label id="labelIdentificador" for="id_identificador">Usuario</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input id="id_identificador" type="number" name="identificador" class="form-control" value={{user.identificador}} required readonly/>
+                                        </div>
+                                        <span class="helptext">{{form.identificador.help_text}}</span>
+                                        <span class="helptext">{{form.identificador.errors}}</span>
+                                    </div>
+                                    <div class="form-group"><label id="labelFecha" for="id_fecha">Fecha</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input id="id_fecha" type="text" name="fecha" class="form-control" required autofocus/>
+                                        </div>
+                                        <span class="helptext">{{form.fecha.help_text}}</span>
+                                        <span class="helptext">{{form.fecha.errors}}</span>
+                                    </div>
+                                    <div class="form-group"><label id="labelMoneda" for="id_moneda">Moneda</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input id="id_moneda" type="number" name="moneda" class="form-control" required/>
+                                        </div>
+                                        <span class="helptext">{{form.moneda.help_text}}</span>
+                                        <span class="helptext">{{form.moneda.errors}}</span>
+                                    </div>
+                                    <div class="form-group"><label id="labelNombre" for="id_nombre">Nombre</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input id="id_nombre" type="text" name="nombre" maxlength="50" class="form-control" required/>
+                                        </div>
+                                        <span class="helptext">{{form.nombre.help_text}}</span>
+                                        <span class="helptext">{{form.nombre.errors}}</span>
+                                    </div>
+                                    <div class="form-group"><label id="labelCodigo_ISO" for="id_codigo_ISO">Codigo ISO</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input id="id_codigo_ISO" type="text" name="codigo_ISO" maxlength="4" class="form-control" required/>
+                                        </div>
+                                        <span class="helptext">{{form.codigo_ISO.help_text}}</span>
+                                        <span class="helptext">{{form.codigo_ISO.errors}}</span>
+                                    </div>
+                                    <div class="form-group"><label id="labelEmisor" for="id_emisor">Emisor</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input id="id_emisor" type="text" name="emisor" maxlength="20" class="form-control" required/>
+                                        </div>
+                                        <span class="helptext">{{form.emisor.help_text}}</span>
+                                        <span class="helptext">{{form.emisor.errors}}</span>
+                                    </div>
+                                    <div class="form-group"><label id="labelTCC" for="id_tcc">TCC</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input id="id_tcc" type="number" name="tcc" step="0.000001" class="form-control" required/>
+                                        </div>
+                                        <span class="helptext">{{form.tcc.help_text}}</span>
+                                        <span class="helptext">{{form.tcc.errors}}</span>
+                                    </div>
+                                    <div class="form-group"><label id="labelTCV" for="id_tcv">TCV</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input id="id_tcv" type="number" name="tcv" step="0.000001" class="form-control" required/>
+                                        </div>
+                                        <span class="helptext">{{form.tcv.help_text}}</span>
+                                        <span class="helptext">{{form.tcv.errors}}</span>
+                                    </div>
+                                    <div class="form-group"><label id="labelArbAct" for="id_arbact">Arbitraje</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input id="id_arbact" type="number" name="arbact" step="0.000001" class="form-control" required/>
+                                        </div>
+                                        <span class="helptext">{{form.arbact.help_text}}</span>
+                                        <span class="helptext">{{form.arbact.errors}}</span>
+                                    </div>
+                                    <div class="form-group"><label id="labelFormaArbitrar" for="id_forma_arbitrar">Forma de Arbitrar</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input id="id_forma_arbitrar" type="number" name="forma_arbitrar" class="form-control" required/>
+                                        </div>
+                                        <span class="helptext">{{form.forma_arbitrar.help_text}}</span>
+                                        <span class="helptext">{{form.forma_arbitrar.errors}}</span>
+                                    </div>
+
+
+                                    <div class="form-group form-inline justify-content-between">
+                                      <div>
+                                          <input id="GuardarCotizaciones" type="submit" value="Guardar Cotizaciones" class="btn btn-primary" update="" form="Form_Html_Cargar_Cotizaciones" formmethod="POST" formaction='{% url "WS:Cotizaciones" %}'/>
+                                      </div>
+                                    </div> 
+                                  </fieldset>             
+                                </form>
+                            </div>    
+                          </div>
+                      </div>
+                    </div>  
+                </div>
+            </div>        
+</br>
+
+<!--  <button class = "btn btn-dark" onClick="alert('¡Hola, señor! {{ user }}')">Saludar</button> -->
+
+          {% if cotizaciones is not None %}
+          <div class="container" id="content" tabindex="-1" style="background-color: ; color: ;">
+            <div class="row justify-content-center">
+            <img id="logo_DATABITICS_COMAP" src='{% static "img/sepi.jpg" %}' alt="Sistema de Exoneraciones de Proyectos de Inversión." style="height:100px; width:100px;"/>
+                      <div class="boostrap-table">
+                        <div class="buttons-toolbar-cotizaciones">
+                        </div>
+                        <table id="tabla-cotizaciones" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-toggle="true" data-show-fullscreen="true" data-toolbar=".buttons-toolbar-cotizaciones" data-locale="es-AR">
+                            <thead>
+                                <tr>
+                                   <th data-sortable="true" data-field="Fechas">Fecha</th>
+                                   <th data-sortable="true" data-field="Monedas">Moneda</th>
+                                   <th data-sortable="true" data-field="Nombres">Nombre</th>
+                                   <th data-sortable="true" data-field="Codigo_ISO">Codigo ISO</th>
+                                   <th data-sortable="true" data-field="Emisores">Emisor</th>
+                                   <th data-sortable="true" data-field="Tipo de Cambio Comprador">TCC</th>
+                                   <th data-sortable="true" data-field="Tipo de Cambio Vendedor">TCV</th>
+                                   <th data-sortable="true" data-field="Arbitraje">ArbAct</th>
+                                   <th data-sortable="true" data-field="Forma de Arbitraje">Forma Arbitrar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>{% for instance in cotizaciones %}
+                                <td>{{ instance.Fecha }}</td>
+                                <td>{{ instance.Moneda }}</td>
+                                <td>{{ instance.Nombre }}</td>
+                                <td>{{ instance.CodigoISO }}</td>
+                                <td>{{ instance.Emisor }}</td>
+                                <td>{{ instance.TCC }}</td>
+                                <td>{{ instance.TCV }}</td>
+                                <td>{{ instance.ArbAct }}</td>
+                                <td>{{ instance.FormaArbitrar }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                      </div>
+            </div>
+          </div> 
+          {% endif %}             
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}

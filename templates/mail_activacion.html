@@ -1,0 +1,8 @@
+{% autoescape off %}
+Hi {{ user.username }},
+Por favor, presiona el siguiente link para registrar la cuenta,
+
+{{ domain }}{% url 'Usuarios:activate2' uidb64=uid token=token key=activation_key %}
+Activation_Key: {{ activation_key }}
+Fecha de Expiracion: {{ key_expires }}
+{% endautoescape %}

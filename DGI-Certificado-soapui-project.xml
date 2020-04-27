@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="8ba3c762-fc05-4005-9e65-a65afea22092" activeEnvironment="Default" name="DGI_Certificado" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="907a509a-fb06-4050-8da2-fae1498cca39" wsaVersion="NONE" name="CVA_WSSoapBinding" type="wsdl" bindingName="{CVA_FE}CVA_WSSoapBinding" soapVersion="1_1" anonymous="optional" definition="https://serviciosdp.dgi.gub.uy:6491/CVA_WS/servlet/acva_ws?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://serviciosdp.dgi.gub.uy:6491/CVA_WS/servlet/acva_ws?wsdl"><con:part><con:url>https://serviciosdp.dgi.gub.uy:6491/CVA_WS/servlet/acva_ws?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="CVA_FE" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp200409="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsp200607="http://www.w3.org/2006/07/ws-policy" xmlns:ns0="CVA_FE">
+  <wsdl:types xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:schema>
+      <xsd:import schemaLocation="acva_ws.xsd1.xsd" namespace="CVA_FE"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CVA_WS.ExecuteSoapIn">
+    <wsdl:part name="parameters" element="xsns:CVA_WS.Execute" xmlns:xsns="CVA_FE"/>
+  </wsdl:message>
+  <wsdl:message name="CVA_WS.ExecuteSoapOut">
+    <wsdl:part name="parameters" element="xsns:CVA_WS.ExecuteResponse" xmlns:xsns="CVA_FE"/>
+  </wsdl:message>
+  <wsdl:portType name="CVA_WSSoapPort">
+    <wsdl:operation name="Execute">
+      <wsdl:input name="ExecuteRequest" message="ns0:CVA_WS.ExecuteSoapIn"/>
+      <wsdl:output name="ExecuteResponse" message="ns0:CVA_WS.ExecuteSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CVA_WSSoapBinding" type="ns0:CVA_WSSoapPort">
+    <soap11:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="Execute">
+      <soap11:operation soapAction="CVA_FEaction/ACVA_WS.Execute" style="document"/>
+      <wsdl:input name="ExecuteRequest">
+        <soap11:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ExecuteResponse">
+        <soap11:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CVA_WS">
+    <wsdl:port name="CVA_WSSoapPort" binding="ns0:CVA_WSSoapBinding">
+      <soap11:address location="https://serviciosdp.dgi.gub.uy:6491/CVA_WS/servlet/acva_ws"/>
+    </wsdl:port>
+    <wsdl:port name="CVA_WSSoapPort.0" binding="ns0:CVA_WSSoapBinding">
+      <soap11:address location="https://serviciosdp.dgi.gub.uy:6491/CVA_WS/servlet/acva_ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>https://serviciosdp.dgi.gub.uy:6491/CVA_WS/servlet/acva_ws.xsd1.xsd</con:url><con:content><![CDATA[<schema targetNamespace="CVA_FE" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="CVA_FE" xmlns:wsdlns="CVA_FE" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns2="WS_CVA" xmlns:tns1="CVA_WS_BE">
+  <import namespace="WS_CVA"/>
+  <import namespace="CVA_WS_BE"/>
+  <element name="CVA_WS.Execute">
+    <complexType>
+      <sequence>
+        <element minOccurs="1" maxOccurs="1" name="Ruc" type="xsd:string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="CVA_WS.ExecuteResponse">
+    <complexType>
+      <sequence>
+        <element minOccurs="1" maxOccurs="1" name="Retornotxt" type="xsd:string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://serviciosdp.dgi.gub.uy:6491/CVA_WS/servlet/acva_ws</con:endpoint></con:endpoints><con:operation id="e37d3385-ba1e-4a7e-a1d0-1411ad819b51" isOneWay="false" action="CVA_FEaction/ACVA_WS.Execute" name="Execute" bindingOperationName="Execute" type="Request-Response" outputName="ExecuteResponse" inputName="ExecuteRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7fab04eb-6b40-4bef-8028-8c807d4bc9a2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://serviciosdp.dgi.gub.uy:6491/CVA_WS/servlet/acva_ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cva="CVA_FE">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <cva:CVA_WS.Execute>\r
+         <cva:Ruc>216214410012</cva:Ruc>\r
+      </cva:CVA_WS.Execute>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="CVA_FEaction/ACVA_WS.Execute"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

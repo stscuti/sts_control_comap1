@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+          <div class="container" id="content" tabindex="-1" style="background-color: #005A9B; color: #fff;">
+            <div class="row justify-content-center">
+            <img id="logo_DATABITICS_COMAP" src='{% static "img/sepi.jpg" %}' alt="Sistema de Exoneraciones de Proyectos de Inversión." style="height:100px; width:100px;" />
+                <form method="POST" action="" name="Form_Html_Activacion" style="width:80%;margin:0 auto" id="Form_Html_Activacion" target="_self">
+                  <p><label id="" class=""><h1>Cuenta Activada</h1></label></p>
+                  <p><label id="" class=""><h3>Debe Actualizar Contraseña</h3></label></p>
+                  <p><label id="" class=""><h6>{{ Mensaje_Error }}</h6></label></p>
+                    {% csrf_token %}
+                    <!-- {{ form }} --> 
+                    <!--
+                    <div class="form-group"><label id="labelOldPassword">Contraseña Antigua</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_old_password" type="password" size="25" name="old_password" class="form-control" autofocus required />
+                        </div>
+                    </div>
+                    -->
+                    <div class="form-group"><label id="labelNewPassword1">Contraseña Nueva</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_new_password1" type="password" size="25" name="new_password1" class="form-control" required />
+                        </div>
+                        <span class="helptext">
+                          <ul>
+                            <li>Su contraseña no puede asemejarse tanto a su otra información personal.</li>
+                            <li>Su contraseña debe contener al menos 8 caracteres.</li>
+                            <li>Su contraseña no puede ser una clave utilizada comunmente.</li>
+                            <li>Su contraseña no puede ser completamente numérica.</li>
+                          </ul>
+                        </span>
+                    </div>
+                    <div class="form-group"><label id="labelNewPassword2">Confirmar Contraseña</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_new_password2" type="password" size="25" name="new_password2" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="form-group form-inline justify-content-between">
+                      <div>
+                          <input id="Activar Cuenta" type="submit" value="Establecer Contraseña" class="btn btn-primary" update="" form="Form_Html_Activacion" formmethod="POST" formaction='{% url "Usuarios:activate" uidb64 token key %}'/>
+                      </div>
+                      <div class="form-group form-inline justify-content-end">  
+                        <div>
+                            <a id="Redirigir a Inicio" href='{% url "Usuarios:MiInicio" %}' title="Redirigirme al Inicio" class="pull-right btn btn-sm btn-secondary">Redirigirme al Inicio</a>
+                        </div>
+                    </div>
+                    </div>  
+                </form>
+            </div>    
+          </div>
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}
+

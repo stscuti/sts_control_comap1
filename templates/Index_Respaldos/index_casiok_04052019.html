@@ -1,0 +1,587 @@
+{% load static %}
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href='{% static "apple-touch-icon.png" %}'>
+
+        <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <!-- Necesario para el SIDEBAR-->
+        <!-- using local links -->
+        <link rel="stylesheet" href='{% static "/css/bootstrap.min.css" %}'>
+        <link rel="stylesheet" href='{% static "/css/all.min.css" %}'>
+        <link rel="stylesheet" href='{% static "/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.css" %}'>
+        
+        <!-- using online links 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+        -->
+
+        <!-- FIN links para el SIDEBAR-->
+
+
+        <link rel="stylesheet" href='{% static "css/bootstrap-theme.min.css" %}'>
+        <link rel="stylesheet" href='{% static "css/main.css" %}'>
+        
+        <!-- Necesario para el SIDEBAR -->
+        <link rel="stylesheet" href='{% static "css/sidebar-themes.css" %}'>
+        <link rel="shortcut icon" type="image/png" href='{% static "img/favicon.png" %}'/>
+        
+
+        <!-- FIN links para el SIDEBAR-->
+        
+        <script src='{% static "js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" %}'></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">Mio…</header>  -->  
+        
+        <div class="contanier" style="">
+            <div class="row">
+              <div class="col-md-12"></div>
+                      <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top container-NavBar" style="">
+                        <!-- NavBar Header -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                              <i class="fas fa-bars btn-outline-dark"></i>
+                              <!--  --> 
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>  
+                            </button>
+                              <!-- Brand -->
+                              <a class="navbar-brand" href="#">Project DataBitics COMAP</a>
+                        </div>  
+                        <!-- Toggler/collapsibe Button -->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                     
+                        <!-- Navbar -->
+                        <div class="collapse navbar-collapse mr-auto" id="Navbar">
+                     
+                          <!-- Hello & Logout -->
+                          <ul class="navbar-nav mr-auto">
+                              <li class="nav-item">
+                                <a class="nav-link" href="#">Hola!</a>
+                              </li>
+                              <li class="nav-item">
+                                 <form class="form form-inline justify-content-right" role="form">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                    </div>
+                                  <input type="text" placeholder="Email" class="form-control mr-sm-2">
+                                  </div>
+                                  <div class="form-group">
+                                  <input type="password" placeholder="Password" class="form-control mr-sm-2">
+                                  </div>
+                                  <button type="submit" class="btn btn-success mr-sm-2">Sign in</button>
+                                  <button type="submit" class="btn btn-success my-2 my-sm-0">Log in</button>
+                                </form>
+                              </li>
+                          </ul>
+                        </div> <!--/.navbar-collapse -->
+                      </nav>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-12">
+                <!-- Inicio de la importacion del SIDEBAR - Todo dentro de un "page-wrapper"
+                <div style="background-color: red;"><h1>Titulo</h1></div>
+                -->
+                  <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
+                      <nav id="sidebar" class="sidebar-wrapper">
+                          <div class="sidebar-content">
+                              <!-- sidebar-brand  -->
+                              <div class="sidebar-item sidebar-brand">
+                                  <a href="#">pro sidebar</a>
+                              </div>
+                              <!-- sidebar-header  -->
+                              <div class="sidebar-item sidebar-header d-flex flex-nowrap">
+                                  <div class="user-pic">
+                                      <img class="img-responsive img-rounded" src='{% static "img/user.jpg" %}' alt="User picture">
+                                  </div>
+                                  <div class="user-info">
+                                      <span class="user-name">Jhon
+                                          <strong>Smith</strong>
+                                      </span>
+                                      <span class="user-role">Administrator</span>
+                                      <span class="user-status">
+                                          <i class="fa fa-circle"></i>
+                                          <span>Online</span>
+                                      </span>
+                                  </div>
+                              </div>
+                              <!-- sidebar-search  -->
+                              <div class="sidebar-item sidebar-search">
+                                  <div>
+                                      <div class="input-group">
+                                          <input type="text" class="form-control search-menu" placeholder="Search...">
+                                          <div class="input-group-append">
+                                              <span class="input-group-text">
+                                                  <i class="fa fa-search" aria-hidden="true"></i>
+                                              </span>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- sidebar-menu  -->
+                              <div class=" sidebar-item sidebar-menu">
+                                  <ul>
+                                      <li class="header-menu">
+                                          <span>General</span>
+                                      </li>
+                                      <li class="sidebar-dropdown">
+                                          <a href="#">
+                                              <i class="fa fa-tachometer-alt"></i>
+                                              <span class="menu-text">Dashboard</span>
+                                              <span class="badge badge-pill badge-warning">New</span>
+                                          </a>
+                                          <div class="sidebar-submenu">
+                                              <ul>
+                                                  <li>
+                                                      <a href="#">Dashboard 1
+                                                          <span class="badge badge-pill badge-success">Pro</span>
+                                                      </a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Dashboard 2</a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Dashboard 3</a>
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                      </li>
+                                      <li class="sidebar-dropdown">
+                                          <a href="#">
+                                              <i class="fa fa-shopping-cart"></i>
+                                              <span class="menu-text">E-commerce</span>
+                                              <span class="badge badge-pill badge-danger">3</span>
+                                          </a>
+                                          <div class="sidebar-submenu">
+                                              <ul>
+                                                  <li>
+                                                      <a href="#">Products
+
+                                                      </a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Orders</a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Credit cart</a>
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                      </li>
+                                      <li class="sidebar-dropdown">
+                                          <a href="#">
+                                              <i class="far fa-gem"></i>
+                                              <span class="menu-text">Components</span>
+                                          </a>
+                                          <div class="sidebar-submenu">
+                                              <ul>
+                                                  <li>
+                                                      <a href="#">General</a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Panels</a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Tables</a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Icons</a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Forms</a>
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                      </li>
+                                      <li class="sidebar-dropdown">
+                                          <a href="#">
+                                              <i class="fa fa-chart-line"></i>
+                                              <span class="menu-text">Charts</span>
+                                          </a>
+                                          <div class="sidebar-submenu">
+                                              <ul>
+                                                  <li>
+                                                      <a href="#">Pie chart</a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Line chart</a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Bar chart</a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Histogram</a>
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                      </li>
+                                      <li class="sidebar-dropdown">
+                                          <a href="#">
+                                              <i class="fa fa-globe"></i>
+                                              <span class="menu-text">Maps</span>
+                                          </a>
+                                          <div class="sidebar-submenu">
+                                              <ul>
+                                                  <li>
+                                                      <a href="#">Google maps</a>
+                                                  </li>
+                                                  <li>
+                                                      <a href="#">Open street map</a>
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                      </li>
+                                      <li class="header-menu">
+                                          <span>Extra</span>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-book"></i>
+                                              <span class="menu-text">Documentation</span>
+                                              <span class="badge badge-pill badge-primary">Beta</span>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-calendar"></i>
+                                              <span class="menu-text">Calendar</span>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <i class="fa fa-folder"></i>
+                                              <span class="menu-text">Examples</span>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                              <!-- sidebar-menu  -->
+                          </div>
+                          <!-- sidebar-footer  -->
+                          <div class="sidebar-footer fixed-bottom">
+                              <div class="dropdown fixed-bottom">
+
+                                  <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <i class="fa fa-bell"></i>
+                                      <span class="badge badge-pill badge-warning notification">3</span>
+                                  </a>
+                                  <div class="dropdown-menu notifications" aria-labelledby="dropdownMenuMessage">
+                                      <div class="notifications-header">
+                                          <i class="fa fa-bell"></i>
+                                          Notifications
+                                      </div>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item" href="#">
+                                          <div class="notification-content">
+                                              <div class="icon">
+                                                  <i class="fas fa-check text-success border border-success"></i>
+                                              </div>
+                                              <div class="content">
+                                                  <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                                      elit. In totam explicabo</div>
+                                                  <div class="notification-time">
+                                                      6 minutes ago
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </a>
+                                      <a class="dropdown-item" href="#">
+                                          <div class="notification-content">
+                                              <div class="icon">
+                                                  <i class="fas fa-exclamation text-info border border-info"></i>
+                                              </div>
+                                              <div class="content">
+                                                  <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                                      elit. In totam explicabo</div>
+                                                  <div class="notification-time">
+                                                      Today
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </a>
+                                      <a class="dropdown-item" href="#">
+                                          <div class="notification-content">
+                                              <div class="icon">
+                                                  <i class="fas fa-exclamation-triangle text-warning border border-warning"></i>
+                                              </div>
+                                              <div class="content">
+                                                  <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                                      elit. In totam explicabo</div>
+                                                  <div class="notification-time">
+                                                      Yesterday
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item text-center" href="#">View all notifications</a>
+                                  </div>
+                              </div>
+                              <div class="dropdown fixed-bottom">
+                                  <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <i class="fa fa-envelope"></i>
+                                      <span class="badge badge-pill badge-success notification">7</span>
+                                  </a>
+                                  <div class="dropdown-menu messages" aria-labelledby="dropdownMenuMessage">
+                                      <div class="messages-header">
+                                          <i class="fa fa-envelope"></i>
+                                          Messages
+                                      </div>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item" href="#">
+                                          <div class="message-content">
+                                              <div class="pic">
+                                                  <img src='{% static "img/user.jpg" %}' alt="">
+                                              </div>
+                                              <div class="content">
+                                                  <div class="message-title">
+                                                      <strong> Jhon doe</strong>
+                                                  </div>
+                                                  <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                                      elit. In totam explicabo</div>
+                                              </div>
+                                          </div>
+
+                                      </a>
+                                      <a class="dropdown-item" href="#">
+                                          <div class="message-content">
+                                              <div class="pic">
+                                                  <img src='{% static "img/user.jpg" %}' alt="">
+                                              </div>
+                                              <div class="content">
+                                                  <div class="message-title">
+                                                      <strong> Jhon doe</strong>
+                                                  </div>
+                                                  <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                                      elit. In totam explicabo</div>
+                                              </div>
+                                          </div>
+
+                                      </a>
+                                      <a class="dropdown-item" href="#">
+                                          <div class="message-content">
+                                              <div class="pic">
+                                                  <img src='{% static "img/user.jpg" %}' alt="">
+                                              </div>
+                                              <div class="content">
+                                                  <div class="message-title">
+                                                      <strong> Jhon doe</strong>
+                                                  </div>
+                                                  <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing
+                                                      elit. In totam explicabo</div>
+                                              </div>
+                                          </div>
+                                      </a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item text-center" href="#">View all messages</a>
+
+                                  </div>
+                              </div>
+                              <div class="dropdown fixed-bottom">
+                                  <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <i class="fa fa-cog"></i>
+                                      <span class="badge-sonar"></span>
+                                  </a>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuMessage">
+                                      <a class="dropdown-item" href="#">My profile</a>
+                                      <a class="dropdown-item" href="#">Help</a>
+                                      <a class="dropdown-item" href="#">Setting</a>
+                                  </div>
+                              </div>
+                              <div class="fixed-bottom">
+                                  <a href="#">
+                                      <i class="fa fa-power-off"></i>
+                                  </a>
+                              </div>
+                              <div class="pinned-footer fixed-bottom">
+                                  <a href="#">
+                                      <i class="fas fa-ellipsis-h"></i>
+                                  </a>
+                              </div>
+                          </div>
+                      </nav>
+                      <!-- page-content  -->
+                      <main class="page-content pt-2">
+                          <div id="overlay" class="overlay"></div>
+                          <div class="container-fluid p-5">
+                              <div class="row">
+                                  <div class="form-group col-md-12">
+                                      <h2>Sidebar template</h2>
+                                      <p>This is a responsive sidebar template with dropdown menu based on bootstrap 4 framework.</p>
+
+                                  </div>
+                                  <div class="form-group col-md-12">
+                                      <a id="toggle-sidebar" class="btn btn-dark" href="#">
+                                          <span>Toggle Sidebar</span>
+                                      </a>
+                                      <a id="pin-sidebar" class="btn btn-dark" href="#">
+                                          <span>Pin Sidebar</span>
+                                      </a>
+
+                                  </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                  <div class="form-group col-md-12">
+                                      <h3>Themes</h3>
+                                      <p>Here are more themes that you can use</p>
+                                  </div>
+                              </div>
+
+                              <div class="row">
+                                  <div class="form-group col-md-12">
+                                      <a href="#" data-theme="default-theme" class="theme default-theme selected"></a>
+                                      <a href="#" data-theme="chiller-theme" class="theme chiller-theme"></a>
+                                      <a href="#" data-theme="legacy-theme" class="theme legacy-theme"></a>
+                                      <a href="#" data-theme="ice-theme" class="theme ice-theme"></a>
+                                      <a href="#" data-theme="cool-theme" class="theme cool-theme"></a>
+                                      <a href="#" data-theme="light-theme" class="theme light-theme"></a>
+                                  </div>
+                                  <div class="form-group col-md-12">
+                                      <p>You can also use background image </p>
+                                  </div>
+                                  <div class="form-group col-md-12">
+                                      <a href="#" data-bg="bg1" class="theme theme-bg selected"></a>
+                                      <a href="#" data-bg="bg2" class="theme theme-bg"></a>
+                                      <a href="#" data-bg="bg3" class="theme theme-bg"></a>
+                                      <a href="#" data-bg="bg4" class="theme theme-bg"></a>
+                                  </div>
+                                  <div class="form-group col-md-12">
+                                      <div class="custom-control custom-switch">
+                                          <input type="checkbox" class="custom-control-input" id="toggle-bg" checked>
+                                          <label class="custom-control-label" for="toggle-bg">Background image</label>
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-md-12">
+                                      <div class="custom-control custom-switch">
+                                          <input type="checkbox" class="custom-control-input" id="toggle-border-radius">
+                                          <label class="custom-control-label" for="toggle-border-radius">Border radius</label>
+                                      </div>
+                                  </div>
+
+                              </div>
+
+                              <hr>
+                              <div class="row">
+                                  <div class="form-group col-md-12">
+                                      <a href="https://github.com/azouaoui-med/pro-sidebar-template" class="btn btn-dark" target="_blank">
+                                          <i class="fab fa-github"></i> View source</a>
+                                      <a href="https://github.com/azouaoui-med/pro-sidebar-template/archive/gh-pages.zip" class="btn btn-outline-dark"
+                                          target="_blank">
+                                          <i class="fa fa-download"></i> Download</a>
+                                  </div>
+                              </div>
+                              <hr>
+                          </div>
+                      </main>
+                      <!-- page-content" -->
+                  </div>
+                  <!-- page-wrapper -->
+
+
+
+
+
+                <!-- Fin de la importacion del SIDEBAR -->
+              </div>
+            </div>
+        </div>
+      
+
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1>Hello, world!</h1>
+            <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+          </div>
+        </div>
+
+        <div class="container">
+          <!-- Example row of columns -->
+          <div class="row">
+            <div class="col-md-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+           </div>
+            <div class="col-md-4">
+              <h2>Heading</h2>
+              <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
+          </div>
+
+          <hr>
+
+          <footer>
+            <p>&copy; STS COMAP 2019</p>
+          </footer>
+        </div> <!-- /container -->        
+        <script src='{% static "js/jquery-3.4.0.min.js" %}'></script>
+        <script>window.jQuery || document.write('<script src='{% static "js/jquery-3.4.0.min.js" %}'><\/script>')</script>
+        <script src='{% static "js/bootstrap.min.js" %}'></script>
+
+        <script src='{% static "js/plugins.js" %}'></script>
+        <script src='{% static "js/main.js" %}'></script>
+
+
+        <!-- using local scripts SIDEBAR -->
+      <script src='{% static "js/jquery-3.4.0.min.js" %}'></script>
+      <script src='{% static "js/popper.min.js" %}'></script>
+      <script src='{% static "malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.concat.min.js" %}'></script>
+      
+
+      <!-- using online scripts 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+          crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+          crossorigin="anonymous"></script>
+      <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+      -->
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>

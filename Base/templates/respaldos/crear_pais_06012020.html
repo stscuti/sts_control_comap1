@@ -1,0 +1,129 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head %}
+        
+{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+          <!-- <div class="container mb-10" id="acordion_cargar_cotizaciones" style="width: 100%; margin:">  tabindex="-1" 
+            <div class="row mb-10"> -->
+              <div class="accordion" id="accordionSolicitudes">
+                  <div class="card border-left-primary shadow">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="">
+                        <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseSolicitudes" aria-expanded="true" aria-controls="collapseOne">
+                          Paises
+                        </button>
+                      </h2>
+                    </div>
+
+                     <div id="collapseSolicitudes" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSolicitudes">
+                      <div class="card-body">
+                        
+                        <form role="form" action="{% url 'Base:Crear_Pais' %}" method="post">
+                          <h3>Crear Pais / Departamento </h3>
+                          {% csrf_token %}
+                          <div class="panel panel-default">
+                                  <div class="panel-body">
+                                          {{ form.as_p }}
+                                          {{ departamento_form_set.management_form }}
+                                          <table>
+                                          {% for departamento_form in departamento_form_set %}
+                                                  <tr class="row">
+                                                  <div class="row {% cycle 'row1' 'row2' %} formset_row-{{ departamento_form_set.prefix }}">
+                                                          <div class="col-lg-4">
+                                                                  <label>Descripcion</label>
+                                                                  {% if departamento_form.descripcion.errors %}
+                                                                          {% for error in departamento_form.descripcion.errors %}
+                                                                          <div class="alert alert-danger alert-dismissible" role="alert">
+                                                                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                                          <span aria-hidden="true">&times;</span>
+                                                                                  </button>
+                                                                                  <strong>Error: </strong> {{ error|escape }}
+                                                                          </div>
+                                                                          {% endfor %}
+                                                                  {% endif %}
+                                                                  {{ departamento_form.descripcion }}
+                                                          </div>
+                                                          <div class="col-lg-4">
+                                                                  <label>UC</label>
+                                                                  {% if departamento_form.uc.errors %}
+                                                                          {% for error in departamento_form.uc.errors %}
+                                                                          <div class="alert alert-danger alert-dismissible" role="alert">
+                                                                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                                          <span aria-hidden="true">&times;</span>
+                                                                                  </button>
+                                                                                  <strong>Error: </strong> {{ error|escape }}
+                                                                          </div>
+                                                                          {% endfor %}
+                                                                  {% endif %}
+                                                                  {{ departamento_form.uc }}
+                                                          </div>
+                                                          <a type="button" class="btn btn-sm btn-default deleteCssClass data-formset-delete-button delete-row" href="javascript:void(0)">
+                                                          {% trans 'delete' %} Eliminar
+                                                          </a>                                                          
+                                                  </div>
+                                                  </tr>
+                                          {% endfor %}
+                                          </table>
+                                  </div>
+                          </div>
+                          <div class="col-lg-12 text-right">
+                                  <input type="submit" class="btn btn-primary" name="submit" value="Guardar">
+                                  <a type="button" class="btn btn-default" href="{% url 'Base:Listado_Paises' %}">
+                                          Cancelar
+                                  </a>
+                          </div>
+                          </form>
+
+                        
+
+
+
+                      </div>
+                    </div>
+                  </div>
+              </div>    
+            <!--</div>  
+          </div>  -->
+         
+                       
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}
+
+      {% block jscript %}
+      <script src='{% static "js/jquery.formset.js" %}'></script>
+      </script>
+      <script type="text/javascript">
+          $('.formset_row-{{ departamento_form_set.prefix }}').formset({
+              addText: 'Agregar Nuevo Formulario',
+              deleteText: 'Remover Formulario',
+              prefix: '{{ departamento_form_set.prefix }}',
+              addCssClass: 'add-row',
+              deleteCssClass: 'delete-row',
+          });
+      </script>
+      <script>
+      $(document).ready(function()
+      {
+          var table = $('#tabla').dataTable( {
+              "language": {
+                      url: "/static/localizacion/es_ES.json"
+              }
+          } );
+      });
+      </script>
+      {% endblock jscript %}

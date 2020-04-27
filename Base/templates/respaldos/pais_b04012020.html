@@ -1,0 +1,124 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load formset_tags %}
+
+{% block head %}
+        
+{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+          <!-- <div class="container mb-10" id="acordion_cargar_cotizaciones" style="width: 100%; margin:">  tabindex="-1" 
+            <div class="row mb-10"> -->
+              <div class="accordion" id="accordionSolicitudes">
+                  <div class="card border-left-primary shadow">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="">
+                        <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseSolicitudes" aria-expanded="true" aria-controls="collapseOne">
+                          Paises
+                        </button>
+                      </h2>
+                    </div>
+
+                     <div id="collapseSolicitudes" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSolicitudes">
+                      <div class="card-body">
+                        
+                        <form role="form" action="{% url 'Base:Crear_Pais' %}" method="post">
+                          <h3>Crear Pais / Departamento </h3>
+                          {% csrf_token %}
+                          <div class="panel panel-default">
+                                  <div class="panel-body">
+                                          {{ form.as_p }}
+                                          <div id="formset" data-formset-prefix="{{ departamento_form_set.prefix }}">
+                                          {{ departamento_form_set.management_form }}
+                                          <div class="data-formset-body">
+                                          {% for departamento_form in departamento_form_set %}
+                                                  
+                                                  <div class="row data-formset-form">
+                                                          {{ departamento_form }}
+                                                          <button type="button" data-formset-move-up-button>Move up</button>
+                                                          <button type="button" data-formset-move-down-button>Move down</button>
+                                                          <button type="button" data-formset-delete-button>Delete form</button>
+                                                  </div>        
+                                          {% endfor %}
+                                          </div>
+                                          <!-- The empty form template. By wrapping this in a <script> tag, the
+                                          __prefix__ placeholder can easily be replaced in both attributes and
+                                          any scripts -->
+                                          <script type="form-template" data-formset-empty-form>
+                                              {% escapescript %}
+                                                  <div data-formset-form>
+                                                      {{ departamento_form_set.empty_form }}
+                                                      <button type="button" data-formset-move-up-button>Move up</button>
+                                                      <button type="button" data-formset-move-down-button>Move down</button>
+                                                      <button type="button" data-formset-delete-button>Delete form</button>
+                                                  </div>
+                                              {% endescapescript %}
+                                          </script>
+                                          <!-- This button will add a new form when clicked -->
+                                          <input type="button" value="Agregar Nuevo Form" data-formset-add>
+
+                                          <script>jQuery(function($) {
+                                              $("#formset").formset({
+                                                  animateForms: true,
+                                                  reorderMode: 'dom',
+                                              });
+                                          });</script>
+                                          </div>
+                                  </div>
+                          </div>
+                          <div class="col-lg-12 text-right">
+                                  <input type="submit" class="btn btn-primary" name="submit" value="Guardar">
+                                  <a type="button" class="btn btn-default" href="{% url 'Base:Listado_Paises' %}">
+                                          Cancelar
+                                  </a>
+                          </div>
+                          </form>
+
+                        
+
+
+
+                      </div>
+                    </div>
+                  </div>
+              </div>    
+            <!--</div>  
+          </div>  -->
+         
+                       
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}
+
+      {% block jscript %}
+      <script src='{% static "js/jquery.formset.js" %}'></script>
+      </script>
+      <script type="text/javascript">
+          $('.formset_row-{{ nested_form.prefix }}').formset({
+              addText: 'Agregar Nuevo Formulario',
+              deleteText: 'Remover Formulario',
+              prefix: '{{ nested_form.prefix }}',
+          });
+      </script>
+      <script>
+      $(document).ready(function()
+      {
+          var table = $('#tabla').dataTable( {
+              "language": {
+                      url: "/static/localizacion/es_ES.json"
+              }
+          } );
+      });
+      </script>
+      {% endblock jscript %}

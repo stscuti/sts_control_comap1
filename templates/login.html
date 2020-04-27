@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+          <div class="container" id="content" tabindex="-1" style="background-color: #005A9B; color: #fff;">
+            <div class="row justify-content-center">
+            <img id="logo_DATABITICS_COMAP" src='{% static "img/sepi.jpg" %}' alt="Sistema de Exoneraciones de Proyectos de Inversión." style="height:100px; width:100px;" />
+                <form method="POST" action="" name="Form_Html_IniciarSesion" style="width:80%;margin:0 auto" id="Form_Html_IniciarSesion" target="_self">
+                  <label id="" class=""><h1>Iniciar Sesión</h1></label>
+                    {% csrf_token %}
+
+                    <div class="form-group"><label id="labelUser">Usuario</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                            <input id="id_username" type="text" name="username" size="25" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group"><label id="labelPassword">Contraseña</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_password" type="password" size="25" name="password" class="form-control" />
+                        </div>
+                    </div>
+                <!-- </form> -->  
+                      <div class="form-group form-inline justify-content-between">
+                              <div>
+                                  <input id="iniciarSesion" type="submit" value="Iniciar sesión" class="btn btn-primary" update="form messages" form="Form_Html_IniciarSesion"/>
+                              </div>
+                            <div class="form-group form-inline justify-content-end">  
+                              <div>
+                                  <a id="linkCambiarPass" href="#" title="Olvidé mi contraseña" class="pull-right btn btn-sm btn-secondary">Olvidé mi contraseña</a>
+                              </div>
+                            </div>
+                      </div>      
+                            <div class="form-group form-inline justify-content-end">
+                              <div>
+                                  <a id="linkRegistrarme" href='{% url "Usuarios:Registro_Contribuyente" %}' title="Registrarme como contribuyente" class="pull-right btn btn-sm btn-secondary">Registrarme como Contribuyente</a>
+                              </div>
+                            </div>
+                            <div class="form-group form-inline justify-content-end">
+                              <div>
+                                  <a id="linkRegistrarme" href='{% url "Usuarios:Registro_PersonaFisica" %}' title="Registrarme como Persona Fisica" class="pull-right btn btn-sm btn-secondary">Registrarme como Consultor</a>
+                              </div>
+                            </div>  
+                </form>
+            </div>    
+          </div>
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}
+

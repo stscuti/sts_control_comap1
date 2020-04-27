@@ -1,0 +1,191 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head %}
+        
+{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+          <!-- <div class="container mb-10" id="acordion_cargar_cotizaciones" style="width: 100%; margin:">  tabindex="-1" 
+            <div class="row mb-10"> -->
+              <div class="accordion" id="accordionPaises">
+                  <div class="card border-left-primary shadow">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="">
+                        <button class="btn btn-primary btn-collapse" type="button" data-toggle="collapse" data-target="#collapsePaises" aria-expanded="false" aria-controls="collapseOne">
+                          Paises
+                        </button>
+                      </h2>
+                    </div>
+
+                     <div id="collapsePaises" class="" aria-labelledby="headingOne" data-parent="#accordionPaises"> <!-- class="collapse"-->
+                      <div class="card-body">
+                        
+                        <div class="row text-right">
+                                <div class="col-lg-12">
+                                        <a href="{% url 'Base:Crear_Pais' %}" class="btn btn-success btn-sm my-2 my-sm-2">
+                                          Crear Paises FS
+                                        </a>                                
+                                        <a href="{% url 'Base:Actualizar_Pais' %}" class="btn btn-success btn-sm my-2 my-sm-2">
+                                          Actualizar Paises FS
+                                        </a>
+                                </div>                                
+                        </div>
+                        <div class="row text-right">
+                                <div class="col-lg-12">
+                                        <a onclick="return abrir_modal_crud_pais('{% url 'Base:Crear_Pais_Individual' %}','Paises / Nuevo')" class="btn btn-primary btn-sm my-2 my-sm-2">
+                                          Crear Paises
+                                        </a>                                
+                                </div>                                
+                        </div>                                                
+                        <hr/>
+                        <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="boostrap-table">
+                                    <div class="buttons-toolbar-paises">
+                                    </div>
+                                    <table id="tabla-paises" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-toggle="true" data-show-fullscreen="true" data-toolbar=".buttons-toolbar-paises" data-locale="es-AR">
+                                               <thead>
+                                                        <tr>
+                                                            <th class="text-center">ID</th>
+                                                            <th class="text-center">Descripcion</th>
+                                                            <th class="text-center">Estado</th>
+                                                            <th class="text-center">Fecha de Creacion</th>
+                                                            <th class="text-center">Fecha de Modificacion</th>
+                                                            <th class="text-center">Creado por:</th>
+                                                            <th class="text-center">Modificado por:</th>
+                                                            <th class="text-center">ACCIONES</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for pais in paises %}
+                                                  <tr>
+                                                      <td>{{ pais.id }}</td>
+                                                      <td>{{ pais.descripcion }}</td>
+                                                      <td>{{ pais.estado|yesno:"Activo,Inactivo" }}</td>
+                                                      <td>{{ pais.fc|date:"d/m/Y H:i:s" }}</td>
+                                                      <td>{{ pais.fm|date:"d/m/Y H:i:s" }}</td>
+                                                      <td>{{ pais.uc }}</td>
+                                                      <td>{{ pais.um }}</td>
+                                                      <td class="text-center">
+                                                          <a onclick="return abrir_modal_crud_pais('{% url 'Base:Detalle_Pais_Individual' pais.id %}','Paises / {{ pais.id }}')" class="btn">
+                                                              <span class="fas fa-eye"></span>
+                                                          </a>
+                                                          <!--
+                                                          <a href="{% url 'Base:Actualizar_Pais_Individual' pais.id %}" class="btn">
+                                                              <span class="fas fa-edit"></span>
+                                                          </a>
+                                                          -->
+                                                          <a onclick="return abrir_modal_crud_pais('{% url 'Base:Actualizar_Pais_Individual' pais.id %}','Paises / {{ pais.id }}')" class="btn">
+                                                              <span class="fa fa-edit"></span>
+                                                          </a>
+                                                          <a onclick="return abrir_modal_crud_pais('{% url 'Base:Eliminar_Pais_Individual' pais.id %}','Paises / {{ pais.id }}')" class="btn">
+                                                              <span class="fa fa-trash"></span>
+                                                          </a>
+                                                          <!--
+                                                            data-target="#ventana_modal_eliminar_pais"
+                                                            href="{% url 'Base:Eliminar_Pais_Individual' pais.id %}"
+                                                          <a href="#" class="btn" data-toggle="modal" data-target="#ventana_modal_eliminar_pais">
+                                                              <span class="fa fa-trash"></span>
+                                                          </a>
+                                                          <a class="btn" data-toggle="modal" onclick="return abrir_modal_eliminar_pais('{% url 'Base:Eliminar_Pais_Individual' pais.id %}')" href="{% url 'Base:Eliminar_Pais_Individual' pais.id %}">
+                                                              <span class="fa fa-trash"></span>
+                                                          </a>
+                                                          -->                                                                                            
+                                                      </td>
+                                                  </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                        </table>
+                                  </div>      
+                                </div>
+                        </div>
+
+                        
+
+
+
+                      </div>
+                    </div>
+                  </div>
+              </div>    
+            <!--</div>  
+          </div>  -->
+         
+                       
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}
+
+      {% block modales %}
+        <!--
+        <div class="modal fade" id="ventana_modal_actualizar_pais" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    
+        </div>
+        -->
+
+        <div class="modal fade" id="ventana_modal_crud_pais" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    
+        </div>
+
+        
+      
+      {% endblock modales %}
+
+      {% block jscript %}
+      
+      <script src='{% static "js/jquery.formset.js" %}'></script>
+      </script>
+      <script type="text/javascript">
+          $('.formset_row-{{ formset.prefix }}').formset({
+              addText: 'add another',
+              deleteText: 'remove',
+              prefix: '{{ formset.prefix }}',
+          });
+      </script>
+      <script>
+      $(document).ready(function()
+      {
+          var table = $('#tabla').dataTable( {
+              "language": {
+                      url: "/static/localizacion/es_ES.json"
+              }
+          } );
+      });
+      </script>
+
+      <!--
+      <script>
+        var modal_actualizar;
+
+        function abrir_modal_actualizar_pais(url, titulo)
+        {
+            modal_actualizar = $('#ventana_modal_actualizar_pais').dialog(
+            {
+                title: titulo,
+                modal: true,
+                width: 500,
+                resizable: false
+            }).dialog('open').load(url)
+        }
+
+        function cerrar_modal_actualizar_pais()
+        {
+            modal_actualizar.dialog("close");
+        }
+        </script>
+        -->
+
+      
+      {% endblock jscript %}

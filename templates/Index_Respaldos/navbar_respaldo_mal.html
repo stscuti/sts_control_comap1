@@ -1,0 +1,55 @@
+                      <nav class="navbar bg-dark navbar-dark fixed-top container-NavBar" style="">
+                          
+                          <div class="navbar-header" style="left: 0px;">   
+                          <!-- Toggler/collapsibe Button -->
+                           <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navbar" aria-expanded="false" aria-controls="navbar">
+                              <span class="navbar-toggler-icon"></span>
+                              <!--  --> 
+                                      <a id="toggle-sidebar" class="btn btn-dark" href="#">
+                                          <span>Toggle</span>
+                                      </a>
+                                      <a id="pin-sidebar" class="btn btn-dark" href="#">
+                                          <span>Pin</span>
+                                      </a>
+                              <!-- 
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span> 
+                              --> 
+                            </button>
+                            </div>  
+
+                          <!-- Brand -->
+                          <div class="navbar-brand justify-content-center" style="width: 240px; border-radius: 10px; background-color: red;" href="#">Project DataBitics COMAP</div>                     
+                          
+                           
+                          <!-- Navbar -->
+                          <div class="collapse navbar-collapse" id="Navbar">
+                              
+                              <!-- links -->
+                              <ul class="navbar-nav mr-auto">
+                                  <li class="nav-item active">
+                                      <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="#">Acerca de</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="#">Contacto</a>
+                                  </li>
+                              </ul>
+                   
+                              <!-- Hello & Logout -->
+                              <ul class="navbar-nav">
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="#">Hola Pedro!</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <form action="/Account/LogOff" method="POST" id="logoutForm">
+                                          <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
+                                      </form>
+                                  </li>
+                              </ul>
+                          </div>
+                      </nav>

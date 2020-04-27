@@ -1,0 +1,158 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+          <div class="container" id="content" tabindex="-1" style="background-color: #005A9B; color: #fff;">
+            <div class="row justify-content-center">
+            <img id="logo_DATABITICS_COMAP" src='{% static "img/sepi.jpg" %}' alt="Sistema de Exoneraciones de Proyectos de Inversión." style="height:100px; width:100px;"/>
+                <form method="POST" action='{% url "Usuarios:Registro_Contribuyente" %}' name="Form_Html_RegistroContribuyente" enctype=multipart/form-data style="width:80%;margin:0 auto" id="Form_Html_RegistroContribuyente">
+                  <label id="" class=""><h1>Registrar Contribuyente</h1></label>
+                    {% csrf_token %}
+                    <!--  {{ form.as_p }}   -->  
+                    {{ form.non_field_errors }}
+                    <div class="form-group"><label id="labelIdentificador" for="id_UsuarioMain-identificador">Identificador</label>
+                        <span><sup>
+                            <i class="fas fa-question-circle" data-toggle="popover" data-trigger="hover" title="Numero Identificador de Usuario" data-content="En el caso de empresas debe utilizar el numero de RUT" data-placement="top">
+                            </path></i>
+                        </sup></span>
+                        <div class="input-group" style="width:30%;">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                            <input id="id_UsuarioMain-identificador" type="text" name="UsuarioMain-identificador" maxlength="12" class="form-control" required autofocus />
+                        </div>
+                        <span class="helptext text-muted">{{ form.UsuarioMain.identificador.help_text }}</span>
+                        <span class="helptext">{{form.UsuarioMain.identificador.errors}}</span>                        
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-password1">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                            <input id="id_UsuarioMain-password1" type="password" name="UsuarioMain-password1" class="form-control" required/>
+                        </div>
+                        <span class="helptext text-muted">{{form.UsuarioMain.password1.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain.password1.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-password2">Confirme Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                            <input id="id_UsuarioMain-password2" type="password" name="UsuarioMain-password2" class="form-control" required/>
+                        </div>
+                        <span class="helptext text-muted">{{form.UsuarioMain.password2.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain.password2.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-correo">Correo Electronico</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_UsuarioMain-correo" type="email" maxlength="100" name="UsuarioMain-correo" class="form-control" required/>
+                        </div>
+                        <span class="helptext text-muted">{{form.UsuarioMain.correo.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain.correo.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-tipo_usuario">Tipo de Usuario</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_UsuarioMain-tipo_usuario" type="text" name="UsuarioMain-tipo_usuario" class="form-control" readonly value="Contribuyente"/>
+                        </div>
+                        <span class="helptext text-muted">{{form.UsuarioMain.tipo_usuario.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain.tipo_usuario.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-direccion">Dirección</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_UsuarioMain-direccion" type="text" maxlength="100" name="UsuarioMain-direccion" class="form-control" />
+                        </div>
+                        <span class="helptext text-muted">{{form.UsuarioMain.direccion.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain.direccion.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-telefono">Telefono</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_UsuarioMain-telefono" type="text" maxlength="50" name="UsuarioMain-telefono" class="form-control" />
+                        </div>
+                        <span class="helptext text-muted">{{form.UsuarioMain.telefono.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain.telefono.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_UsuarioMain-celular">Celular</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_UsuarioMain-celular" type="text" maxlength="50" name="UsuarioMain-celular" class="form-control" required/>
+                        </div>
+                        <span class="helptext text-muted">{{form.UsuarioMain.celular.help_text}}</span>
+                        <span class="helptext">{{form.UsuarioMain.celular.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_Contribuyente-razon_social">Razon Social</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_Contribuyente-razon_social" type="text" name="Contribuyente-razon_social" class="form-control" maxlength="150" required/>
+                        </div>
+                        <span class="helptext text-muted">{{form.Contribuyente.razon_social.help_text}}</span>
+                        <span class="helptext">{{form.Contribuyente.razon_social.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_Contribuyente-nombre_comercial">Nombre Comercial</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_Contribuyente-nombre_comercial" type="text" maxlength="150" required name="Contribuyente-nombre_comercial" class="form-control" />
+                        </div>
+                        <span class="helptext text-muted">{{form.Contribuyente.nombre_comercial.help_text}}</span>
+                        <span class="helptext">{{form.Contribuyente.nombre_comercial.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_Contribuyente-domicilio_fiscal">Domicilio Fiscal</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_Contribuyente-domicilio_fiscal" type="text" maxlength="150" required name="Contribuyente-domicilio_fiscal" class="form-control"/>
+                        </div>
+                        <span class="helptext text-muted">{{form.Contribuyente.domicilio_fiscal.help_text}}</span>
+                        <span class="helptext">{{form.Contribuyente.domicilio_fiscal.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_Contribuyente-domicilio_constituido">Domicilio Constituido</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_Contribuyente-domicilio_constituido" type="text" maxlength="150" required name="Contribuyente-domicilio_constituido" class="form-control"/>
+                        </div>
+                        <span class="helptext text-muted">{{form.Contribuyente.domicilio_constituido.help_text}}</span>
+                        <span class="helptext">{{form.Contribuyente.domicilio_constituido.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_Contribuyente-n_bps">Número BPS</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_Contribuyente-n_bps" type="number" name="Contribuyente-n_bps" class="form-control" required/>
+                        </div>
+                        <span class="helptext text-muted">{{form.Contribuyente.n_bps.help_text}}</span>
+                        <span class="helptext">{{form.Contribuyente.n_bps.errors}}</span>
+                    </div>
+                    <div class="form-group"><label for="id_Contribuyente-n_mtss">Número MTSS</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                            <input id="id_Contribuyente-n_mtss" type="number" name="Contribuyente-n_mtss" class="form-control" required/>
+                        </div>
+                        <span class="helptext text-muted">{{form.Contribuyente.n_mtss.help_text}}</span>
+                        <span class="helptext">{{form.Contribuyente.n_mtss.errors}}</span>
+                    </div>
+                    <div class="form-group form-inline justify-content-between">
+                      <div>
+                          <input id="GuardarContribuyente" type="submit" value="Guardar Contribuyente" class="btn btn-primary" update="" form="Form_Html_RegistroContribuyente" formmethod="POST" formaction='{% url "Usuarios:Registro_Contribuyente" %}'/>
+                      </div>
+                    </div>          
+                </form>
+            </div>    
+          </div>
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}
+      {% block jscript %}
+        <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+        </script>
+      {% endblock jscript %}  

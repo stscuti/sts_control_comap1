@@ -1,0 +1,98 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head %}
+        
+{% endblock head %}
+
+
+      {% block page_content_1 %}{% endblock page_content_1 %}
+      {% block page_content_2 %}{% endblock page_content_2 %}
+      {% block page_content_3 %}{% endblock page_content_3 %}
+      {% block page_content_4 %}
+        {% block jumbotron %}
+          {% block jumbotron_title %}
+              
+          {% endblock jumbotron_title %}
+          {% block jumbotron_content %}
+         
+                       
+          {% endblock jumbotron_content %}
+        {% endblock jumbotron %}
+      {% endblock page_content_4 %}
+      
+      {% block modales %}
+        <div class="modal fade" id="ventana_modal_eliminar_pais" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ventana_modal_eliminar_pais">Eliminar Pais</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+                
+              <form role="form" action="{% url 'Base:Eliminar_Pais_Individual' paises.pk %}" method="post">
+              <div class="modal-body">
+                
+                {% csrf_token %}
+                ¿Desea Eliminar {{ paises.descripcion }} ?
+              </div>
+              <div class="modal-footer">
+                  <input type="submit" class="btn btn-danger" name="submit" value="Eliminar">
+                  <a type="button" class="btn btn-default" href="{% url 'Base:Listado_Paises' %}">
+                          Cancelar
+                  </a>
+              </div>
+              </form>
+            </div>
+          </div>    
+        </div>
+      {% endblock modales %}
+      
+      {% block jscript %}
+      <script src='{% static "js/jquery.formset.js" %}'></script>
+      </script>
+      <script type="text/javascript">
+          $('.formset_row-{{ departamento_form_set.prefix }}').formset({
+              addText: 'Agregar Nuevo Formulario',
+              deleteText: 'Remover Formulario',
+              prefix: '{{ departamento_form_set.prefix }}',
+              addCssClass: 'add-row',
+              deleteCssClass: 'delete-row',
+          });
+      </script>
+      <script>
+      $(document).ready(function()
+      {
+          var table = $('#tabla').dataTable( {
+              "language": {
+                      url: "/static/localizacion/es_ES.json"
+              }
+          } );
+      });
+      </script>
+        <script>
+        function abrir_modal_eliminar_pais(url)
+        {
+            $('#ventana_modal_eliminar_pais').load(url, function()
+            {
+            $(this).modal({
+                backdrop: 'static',
+                keyboard: false
+            })
+            $(this).modal('show');
+            });
+            return false;
+        }
+        function cerrar_modal()
+        {
+        $('#ventana_modal_eliminar_pais').modal('hide');
+        return false;
+        }
+        </script>
+
+
+      {% endblock jscript %}
